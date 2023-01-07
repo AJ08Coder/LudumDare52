@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enviroment/World.gd" type="Script" id=2]
+[ext_resource path="res://Characters/Enemy/Enemy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 331, 26 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 22.75, 184.75 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
+position = Vector2( 197, 204 )
+
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 382, 110 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 93, 117 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 251, -37 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 250, 314 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -31, 137 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 535, 137 )
+shape = SubResource( 2 )

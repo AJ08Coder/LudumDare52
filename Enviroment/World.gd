@@ -17,4 +17,4 @@ func _on_SpawnEnemies_timeout():
 	var instance = zombie.instance()
 	instance.player = player
 	instance.global_position = $GameLoop/Path2D/PathFollow2D/Position2D.global_position
-	$Enemies.add_child(instance)
+	$YSort/Enemies.add_child(instance)

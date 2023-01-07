@@ -31,7 +31,7 @@ func _physics_process(delta):
 			velocity = global_position.direction_to(player.global_position)
 			move_and_slide(velocity * 40)
 			print("Fdsf")
-			
+		
 
 
 func move(target, delta):

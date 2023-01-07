@@ -17,12 +17,6 @@ _data = {
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
-position = Vector2( 197, 204 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 2
 
@@ -42,8 +36,6 @@ shape = SubResource( 2 )
 position = Vector2( 535, 137 )
 shape = SubResource( 2 )
 
-[node name="Enemies" type="Node2D" parent="."]
-
 [node name="GameLoop" type="Node2D" parent="."]
 
 [node name="Path2D" type="Path2D" parent="GameLoop"]
@@ -59,5 +51,17 @@ offset = 495.797
 [node name="SpawnEnemies" type="Timer" parent="GameLoop"]
 wait_time = 2.0
 autostart = true
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Crops" type="YSort" parent="YSort"]
+
+[node name="Player" parent="YSort" groups=["Player"] instance=ExtResource( 1 )]
+position = Vector2( 197, 204 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Enemies" type="YSort" parent="YSort"]
 
 [connection signal="timeout" from="GameLoop/SpawnEnemies" to="." method="_on_SpawnEnemies_timeout"]

@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
-onready var crop : PackedScene
+export(PackedScene) var crop : PackedScene
+
+var tile_size = 16
 
 var speed = 80
-
 var health = 100
 
 onready var laser = $laser
@@ -38,7 +39,11 @@ func _physics_process(delta):
 		laser_fire(false)
 
 func plant_seed():
-	pass
+	var spot := Vector2.ZERO
+	# may need to offset it later (after stepify step)
+	spot.x = stepify($Sprite/FootCheck.position.x, tile_size)
+	spot.y = stepify($Sprite/FootCheck.position.y, tile_size)
+	var
 
 #Enemy AI
 

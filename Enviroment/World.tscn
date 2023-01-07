@@ -253,4 +253,7 @@ z_index = -10
 z_as_relative = false
 texture = ExtResource( 4 )
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.309804, 0.309804, 0.309804, 1 )
+
 [connection signal="timeout" from="GameLoop/SpawnEnemies" to="." method="_on_SpawnEnemies_timeout"]

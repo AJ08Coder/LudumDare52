@@ -8,13 +8,15 @@ var speed = 80
 var health = 100
 
 onready var laser = $laser
-onready var wand = $Hotbar/Wand
+onready var hand = $Hotbar/Hand
 onready var meele_weapon = $Hotbar/MeeleWeapon
 
+var crop_loc = []
 
-func laser_fire(i):
-	laser.enabled = i
-	laser.visible = i
+
+func choose_rand_item(list): # chooses random item off list
+	list.shuffle()
+	return list[0]
 
 func _physics_process(delta):
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up","move_down")
@@ -32,22 +34,21 @@ func _physics_process(delta):
 	else:
 		$AnimationPlayer.play("RESET")
 
-	$Hotbar/Wand.look_at(get_global_mouse_position())
-	laser.look_at(get_global_mouse_position())
+	$Hotbar/Hand.look_at(get_global_mouse_position())
+
 
 	if Input.is_action_pressed("ui_accept"):
-		laser_fire(true)
 		plant_seed()
-	else:
-		laser_fire(false)
 
 func plant_seed():
 	var spot := Vector2.ZERO
 	# may need to offset it later (after stepify step)
-	spot.x = stepify(wand.get_node("Action").global_position.x - tile_size/2, tile_size)
-	spot.y = stepify(wand.get_node("Action").global_position.y - tile_size/2, tile_size)
+	spot.x = stepify(hand.get_node("Action").global_position.x - tile_size/2, tile_size)
+	spot.y = stepify(hand.get_node("Action").global_position.y - tile_size/2, tile_size)
 	spot.x += tile_size/2
 	spot.y += tile_size/2
+	
+	crop_loc.append(Vector2(spot.x,spot.y))
 	# there is already a crop planted bish
 	if Global.world_node.crop_spots.find(spot) != -1:
 		return

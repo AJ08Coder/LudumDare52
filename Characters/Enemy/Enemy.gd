@@ -4,7 +4,7 @@ extends KinematicBody2D
 export var SPEED = 30
 var velocity = Vector2.ZERO
 export var health = 3
-
+export(String) var main_target
 
 onready var anim = $AnimationPlayer
 onready var sprite = $Sprite

@@ -5,7 +5,7 @@
 [node name="laser" type="RayCast2D"]
 enabled = true
 cast_to = Vector2( 100, 0 )
-collision_mask = 10
+collision_mask = 6
 collide_with_areas = true
 script = ExtResource( 1 )
 

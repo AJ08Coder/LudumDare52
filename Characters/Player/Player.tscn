@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Art/plaguedoctor.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Characters/Enemy/laser.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enviroment/Crop.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Characters/Player/MeeleWeapon.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 3.5, 7 )
@@ -41,14 +42,14 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 4, 1 )
-
 [sub_resource type="CircleShape2D" id=5]
 radius = 50.0
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 14.0357
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 4, 1 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 4
@@ -72,26 +73,6 @@ region_rect = Rect2( -38, 57, 0, 0 )
 anims/RESET = SubResource( 1 )
 anims/Walk = SubResource( 2 )
 
-[node name="Wand" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wand"]
-position = Vector2( 13, 0 )
-shape = SubResource( 4 )
-
-[node name="Sprite" type="Sprite" parent="Wand"]
-position = Vector2( 13, 0 )
-scale = Vector2( 0.125, 0.03125 )
-texture = ExtResource( 3 )
-
-[node name="Action" type="Position2D" parent="Wand"]
-position = Vector2( 13, 0 )
-__meta__ = {
-"_gizmo_extents_": 2.0
-}
-
-[node name="Polygon2D" type="Polygon2D" parent="Wand/Action"]
-polygon = PoolVector2Array( -2, -1, -1, 2, 1, 2, 2, 0, 1, -2, -1, -2 )
-
 [node name="Attract" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attract"]
@@ -101,6 +82,31 @@ shape = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 shape = SubResource( 6 )
+
+[node name="Hotbar" type="Node2D" parent="."]
+
+[node name="Wand" type="Area2D" parent="Hotbar"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Wand"]
+position = Vector2( 13, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Hotbar/Wand"]
+position = Vector2( 13, 0 )
+scale = Vector2( 0.125, 0.03125 )
+texture = ExtResource( 3 )
+
+[node name="Action" type="Position2D" parent="Hotbar/Wand"]
+position = Vector2( 13, 0 )
+__meta__ = {
+"_gizmo_extents_": 2.0
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Hotbar/Wand/Action"]
+polygon = PoolVector2Array( -2, -1, -1, 2, 1, 2, 2, 0, 1, -2, -1, -2 )
+
+[node name="MeeleWeapon" parent="Hotbar" instance=ExtResource( 6 )]
 
 [connection signal="body_entered" from="Attract" to="." method="_on_Attract_body_entered"]
 [connection signal="body_exited" from="Attract" to="." method="_on_Attract_body_exited"]

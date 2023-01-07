@@ -8,6 +8,8 @@ var speed = 80
 var health = 100
 
 onready var laser = $laser
+onready var wand = $Hotbar/Wand
+onready var meele_weapon = $Hotbar/MeeleWeapon
 
 
 func laser_fire(i):
@@ -30,7 +32,7 @@ func _physics_process(delta):
 	else:
 		$AnimationPlayer.play("RESET")
 
-	$Wand.look_at(get_global_mouse_position())
+	$Hotbar/Wand.look_at(get_global_mouse_position())
 	laser.look_at(get_global_mouse_position())
 
 	if Input.is_action_pressed("ui_accept"):
@@ -42,8 +44,8 @@ func _physics_process(delta):
 func plant_seed():
 	var spot := Vector2.ZERO
 	# may need to offset it later (after stepify step)
-	spot.x = stepify($Wand/Action.global_position.x - tile_size/2, tile_size)
-	spot.y = stepify($Wand/Action.global_position.y - tile_size/2, tile_size)
+	spot.x = stepify(wand.get_node("Action").global_position.x - tile_size/2, tile_size)
+	spot.y = stepify(wand.get_node("Action").global_position.y - tile_size/2, tile_size)
 	spot.x += tile_size/2
 	spot.y += tile_size/2
 	# there is already a crop planted bish

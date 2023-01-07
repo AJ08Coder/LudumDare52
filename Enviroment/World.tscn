@@ -54,13 +54,13 @@ autostart = true
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Crops" type="YSort" parent="YSort"]
-
 [node name="Player" parent="YSort" groups=["Player"] instance=ExtResource( 1 )]
 position = Vector2( 197, 204 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Crops" type="YSort" parent="YSort"]
 
 [node name="Enemies" type="YSort" parent="YSort"]
 

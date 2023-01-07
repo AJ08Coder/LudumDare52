@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Art/plaguedoctor.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Characters/Enemy/laser.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enviroment/Crop.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 3.5, 7 )
@@ -52,6 +53,7 @@ radius = 14.0357
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 4
 script = ExtResource( 2 )
+crop = ExtResource( 5 )
 
 [node name="laser" parent="." instance=ExtResource( 4 )]
 visible = false

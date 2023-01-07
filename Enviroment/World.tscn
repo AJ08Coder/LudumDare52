@@ -16,6 +16,7 @@ _data = {
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
+player_path = NodePath("YSort/Player")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -54,13 +55,13 @@ autostart = true
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Crops" type="YSort" parent="YSort"]
-
 [node name="Player" parent="YSort" groups=["Player"] instance=ExtResource( 1 )]
 position = Vector2( 197, 204 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Crops" type="YSort" parent="YSort"]
 
 [node name="Enemies" type="YSort" parent="YSort"]
 

@@ -35,6 +35,7 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("ui_accept"):
 		laser_fire(true)
+		plant_seed()
 	else:
 		laser_fire(false)
 
@@ -43,7 +44,15 @@ func plant_seed():
 	# may need to offset it later (after stepify step)
 	spot.x = stepify($Sprite/FootCheck.position.x, tile_size)
 	spot.y = stepify($Sprite/FootCheck.position.y, tile_size)
-	var
+	# there is already a crop planted bish
+	if Global.world_node.crop_spots.find(spot) != -1:
+		return
+	else:
+		Global.world_node.crop_spots.append(spot)
+	var crop_inst = crop.instance()
+	# crop params go here later
+	crop_inst.global_position = spot
+	get_parent().get_node("Crops").add_child(crop_inst)
 
 #Enemy AI
 

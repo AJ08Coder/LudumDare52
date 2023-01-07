@@ -34,3 +34,26 @@ func _physics_process(delta):
 	else:
 		laser_fire(false)
 
+#Enemy AI
+
+func _on_Attract_body_entered(body):
+	#Enemy In range
+	if body.is_in_group("Enemy"):
+		body.state = body.FOLLOW # follow player
+
+
+func _on_Attract_body_exited(body):
+	#Enemy not in range
+	if body.is_in_group("Enemy"):
+		body.state = body.SURROUND # surround player
+
+
+func _on_Attack_body_entered(body):
+	#Enemy in range to attack with weapon
+	if body.is_in_group("Enemy"):
+		body.state = body.ATTACK # attack player
+
+func _on_Attack_body_exited(body):
+	#Enemy not in range to attack with weapon
+	if body.is_in_group("Enemy"):
+		body.state = body.SURROUND # surround player

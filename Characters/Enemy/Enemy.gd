@@ -1,9 +1,9 @@
 
 extends KinematicBody2D
 
-var SPEED = 30
+export var SPEED = 30
 var velocity = Vector2.ZERO
-var health = 3
+export var health = 3
 
 
 onready var anim = $AnimationPlayer
@@ -11,7 +11,7 @@ onready var switch_pos_timer = $SwitchPosTimer
 onready var sprite = $Sprite
 onready var attack_timer = $StartAttractTimer
 onready var stunned_timer = $StunnedTimer
-onready var rays = $rays
+#onready var rays = $rays
 
 
 var player
@@ -32,30 +32,33 @@ enum {
 
 var state = SURROUND
 
-func _ready():
-	print(rays)
+func randomize_circle_pos():
 	rng.randomize()
 	randomno = rng.randf()
-	target = get_circle_position(randomno)
+	
+func _ready():
+	randomize_circle_pos()
 	anim.play("idle")
-	switch_pos_timer.wait_time = rng.randf_range(2.4,5)
  
 func _physics_process(delta):
+
 	match state:
 
 		SURROUND:
 			move(get_circle_position(randomno), delta)
 			anim.play("Moving")
+			print("SURROUND")
 		FOLLOW:
 			move(player.global_position, delta)
 			anim.play("Moving")
 			pass
+			print("FOLLOW")
 			#state = SURROUND
 		ATTACK:
 			var hit_anims = ["Slash"]
 			var rand_anim  = choose(hit_anims)
 			move(player.global_position, delta)
-			
+			print("ATTACK")
 			anim.play(rand_anim)
 		DIE:
 
@@ -86,7 +89,7 @@ func move(target, delta):
 	velocity = move_and_slide(velocity)
 	
 	
-	$MeeleHitBox.look_at(player.global_position)
+	#$MeeleHitBox.look_at(player.global_position)
 	if player.global_position.x > global_position.x:
 		sprite.scale.x = 1
 		#$MeeleHitBox.scale.y = 1
@@ -115,31 +118,28 @@ func choose(array):
 	return array.front()
 
 
-func _on_Switch_Position_Timer():
-	rng.randomize()
-	randomno = rng.randf()
-	switch_pos_timer.wait_time = rng.randf_range(2,4)
-	#pass
-
-func _on_AttackTimer_timeout():
-	state = ATTACK
-
 
 
 func avoid_obstacle_steering():
-	rays.rotation = velocity.angle()
+	pass
+	#rays.rotation = velocity.angle()
 	
-	for ray in rays.get_children():
-		ray.cast_to.x = velocity.length()
-		if ray.is_colliding():
-			if ray.get_collider().is_in_group("Enemy"):
-				var obstacle = ray.get_collider()
-				return (global_position + velocity - obstacle.global_position).normalized() * avoid_force
+	#for ray in rays.get_children():
+	#	ray.cast_to.x = velocity.length()
+	#	if ray.is_colliding():
+	#		if ray.get_collider().is_in_group("Enemy"):
+#				var obstacle = ray.get_collider()
+#				return (global_position + velocity - obstacle.global_position).normalized() * avoid_force
 			
 	return Vector2.ZERO
 
-func _on_StunnedTimer_timeout():
+
+
+
+
+
+
+
+
+func _on_StartAttractTimer_timeout():
 	state = ATTACK
-
-
-

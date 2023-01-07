@@ -39,13 +39,15 @@ func _physics_process(delta):
 func _on_Attract_body_entered(body):
 	#Enemy In range
 	if body.is_in_group("Enemy"):
-		body.state = body.FOLLOW # follow player
+		body.attack_timer.start() # stay at boundry for certain time then attack
 
 
 func _on_Attract_body_exited(body):
 	#Enemy not in range
 	if body.is_in_group("Enemy"):
+		body.attack_timer.stop() # Cancel attack timer
 		body.state = body.SURROUND # surround player
+		body.randomize_circle_pos()
 
 
 func _on_Attack_body_entered(body):
@@ -56,4 +58,5 @@ func _on_Attack_body_entered(body):
 func _on_Attack_body_exited(body):
 	#Enemy not in range to attack with weapon
 	if body.is_in_group("Enemy"):
+		body.attack_timer.start()
 		body.state = body.SURROUND # surround player

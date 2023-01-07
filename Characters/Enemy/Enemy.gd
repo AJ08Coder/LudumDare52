@@ -4,7 +4,7 @@ var speed = 50
 
 var velocity = Vector2()
 
-onready var player = get_parent().get_node("Player")
+onready var player = owner.get_node("Player")
 
 var proximity = []
 

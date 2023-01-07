@@ -28,8 +28,8 @@ func _physics_process(delta):
 		FIGHT:
 			pass
 		CURING:
-			velocity = global_position.direction_to(player.global_position)
-			move_and_slide(velocity * 40)
+		#	velocity = global_position.direction_to(player.global_position)
+		#	move_and_slide(velocity * 40)
 			print("Fdsf")
 		
 

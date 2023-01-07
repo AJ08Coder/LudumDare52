@@ -91,9 +91,6 @@ shape = SubResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 shape = SubResource( 6 )
 
-[node name="FootCheck" type="Position2D" parent="."]
-position = Vector2( 0, 7 )
-
 [connection signal="body_entered" from="Attract" to="." method="_on_Attract_body_entered"]
 [connection signal="body_exited" from="Attract" to="." method="_on_Attract_body_exited"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]

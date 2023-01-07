@@ -42,8 +42,10 @@ func _physics_process(delta):
 func plant_seed():
 	var spot := Vector2.ZERO
 	# may need to offset it later (after stepify step)
-	spot.x = stepify($Sprite/FootCheck.position.x, tile_size)
-	spot.y = stepify($Sprite/FootCheck.position.y, tile_size)
+	spot.x = stepify($Wand/Action.global_position.x - tile_size/2, tile_size)
+	spot.y = stepify($Wand/Action.global_position.y - tile_size/2, tile_size)
+	spot.x += tile_size/2
+	spot.y += tile_size/2
 	# there is already a crop planted bish
 	if Global.world_node.crop_spots.find(spot) != -1:
 		return

@@ -16,6 +16,7 @@ _data = {
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
+player_path = NodePath("YSort/Player")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 2

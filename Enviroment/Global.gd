@@ -1,3 +1,5 @@
 extends Node
 
-var crop_spots = []
+# only use this for refereces
+
+var world_node : Node

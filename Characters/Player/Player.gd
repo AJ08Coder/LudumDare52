@@ -13,6 +13,8 @@ onready var sprite = $Sprite
 onready var animplayer = $AnimationPlayer
 onready var plant_cooldown = $PlantCooldown
 onready var weapon_anim = $Hand/MeeleWeapon/HitBox/AnimationPlayer
+onready var hit_box: Area2D = $Hand/MeeleWeapon/HitBox
+onready var buff_timer: Timer = $BuffTimer
 
 signal health_changed
 
@@ -25,11 +27,21 @@ func take_damage(amount):
 
 func give_buff(type: int):
 
-	if type == Global.crop_types.SPEED:
-		print("I AM SPEED")
+	if not buff_timer.is_stopped():
+		cleanse_buffs()
+	buff_timer.start()
 
-	if type == Global.crop_types.DAMAGE:
-		print("I HAVE ALMIGHTY STRENGTH")
+	match type:
+		Global.crop_types.SPEED:
+			speed *= 2
+
+		Global.crop_types.DAMAGE:
+			hit_box.damage *= 2
+
+
+func cleanse_buffs():
+	speed = 80
+	hit_box.damage = 10
 
 
 func choose_rand_item(list): # chooses random item off list

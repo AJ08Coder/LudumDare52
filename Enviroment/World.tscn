@@ -214,6 +214,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 1, 0 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "turned_night_time" ],
+"method": "_turned_time"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "NighttoDay"
@@ -241,6 +255,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "turned_day_time" ],
+"method": "_turned_time"
+} ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -307,7 +335,6 @@ offset = 495.797
 
 [node name="SpawnEnemies" type="Timer" parent="GameLoop"]
 wait_time = 2.0
-autostart = true
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -339,8 +366,6 @@ texture = ExtResource( 4 )
 
 [node name="Cycle" type="CanvasModulate" parent="."]
 script = ExtResource( 5 )
-night_color = Color( 1, 0, 0, 1 )
-day_color = Color( 1, 1, 1, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cycle"]
 anims/DaytoNight = SubResource( 5 )
@@ -363,5 +388,7 @@ margin_bottom = 63.0
 text = "time: 123"
 
 [connection signal="timeout" from="GameLoop/SpawnEnemies" to="." method="_on_SpawnEnemies_timeout"]
+[connection signal="turned_day_time" from="Cycle" to="." method="_on_Cycle_turned_day_time"]
+[connection signal="turned_night_time" from="Cycle" to="." method="_on_Cycle_turned_night_time"]
 [connection signal="timeout" from="Cycle/Time" to="Cycle" method="_on_Time_timeout"]
 [connection signal="timeout" from="Cycle/Time2" to="Cycle" method="_on_Time_timeout"]

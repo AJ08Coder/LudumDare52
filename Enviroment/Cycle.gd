@@ -1,12 +1,15 @@
 extends CanvasModulate
 
-export(Color) var night_color
-export(Color) var day_color
 onready var rich_text_label = $"../CanvasLayer/RichTextLabel"
 export var time = 1 # 1 = day 0 = night
 
+signal turned_day_time
+signal turned_night_time
+
+func _turned_time(day):
+	emit_signal(day)
+
 func _ready():
-	color = day_color
 	$AnimationPlayer.play("RESET")
 
 func _process(delta):

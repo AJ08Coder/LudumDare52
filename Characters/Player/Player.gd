@@ -14,6 +14,8 @@ onready var animplayer = $AnimationPlayer
 
 var crop_loc = []
 
+func take_damage(amount):
+	health -= amount
 
 func choose_rand_item(list): # chooses random item off list
 	list.shuffle()
@@ -57,6 +59,13 @@ func plant_seed():
 	# crop params go here later
 	crop_inst.global_position = spot
 	get_parent().get_node("Crops").add_child(crop_inst)
+
+
+func _input(event):
+	if event.is_action_pressed("attack"):
+		meele_weapon.get_node("AnimationPlayer").play("Slash1")
+
+
 
 #Enemy AI
 

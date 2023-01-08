@@ -87,5 +87,9 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource( 7 )
 
+[node name="BuffTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
 [connection signal="timeout" from="StartAttractTimer" to="." method="_on_StartAttractTimer_timeout"]
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]

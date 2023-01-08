@@ -8,7 +8,7 @@ onready var anim = $AnimationPlayer
 onready var sprite = $Sprite
 onready var attack_timer = $StartAttractTimer
 onready var stunned_timer = $StunnedTimer
-
+onready var buff_timer: Timer = $BuffTimer
 
 var crops 
 
@@ -24,6 +24,7 @@ var crop_target
 var crop_path
 
 
+
 enum {
 	SURROUND,
 	FOLLOW,
@@ -37,8 +38,23 @@ enum {
 
 var state = SURROUND
 
-func give_buff(type):
-	print(str(self.name) + " is " + str(type))
+func cleanse_buffs():
+	SPEED = 30
+	hit_box.damage = 10
+
+
+func give_buff(type: int):
+
+	if not buff_timer.is_stopped():
+		cleanse_buffs()
+	buff_timer.start()
+
+	match type:
+		Global.crop_types.SPEED:
+			speed *= 2
+
+		Global.crop_types.DAMAGE:
+			hit_box.damage *= 2
 
 func randomize_circle_pos(): # randomizes random pos around the player
 	rng.randomize()
@@ -82,7 +98,7 @@ func _physics_process(delta):
 			health -= damage_taken
 			state = STUNNED
 		FOLLOWCROP:
-			if not crop_target.is_queued_for_deletion():
+			if is_instance_valid(crop_target) == true:
 				move(crop_target.global_position, delta)
 				anim.play("Moving")
 			else:

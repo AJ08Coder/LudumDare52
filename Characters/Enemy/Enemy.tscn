@@ -88,3 +88,4 @@ script = ExtResource( 3 )
 shape = SubResource( 7 )
 
 [connection signal="timeout" from="StartAttractTimer" to="." method="_on_StartAttractTimer_timeout"]
+[connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]

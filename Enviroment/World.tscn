@@ -385,7 +385,6 @@ anims/NighttoDay = SubResource( 6 )
 anims/RESET = SubResource( 7 )
 
 [node name="Time" type="Timer" parent="Cycle"]
-wait_time = 60.0
 one_shot = true
 autostart = true
 

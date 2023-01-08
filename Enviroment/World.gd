@@ -4,13 +4,14 @@ var souls = 0
 
 var crop_spots = []
 
-var zombie = preload("res://Characters/Enemy/Zombie.tscn")
+var zombie = preload("res://Characters/Enemy/Enemy.tscn")
 onready var spawn_enemies = $GameLoop/SpawnEnemies
 var wave = [3,10,20,0]
 			# amount of enemies, last is win
 export(NodePath) var player_path
 onready var player = get_node(player_path)
 onready var player_health_bar = $CanvasLayer/PlayerHealthBar
+onready var crops = $YSort/Crops
 
 
 func _ready() -> void:
@@ -24,6 +25,8 @@ func _on_SpawnEnemies_timeout():
 	$GameLoop/Path2D/PathFollow2D.unit_offset = rng.randf_range(0,1)
 	var instance = zombie.instance()
 	instance.player = player
+	instance.crops = crops
+	instance.crop_path = crops.get_path()
 	instance.global_position = $GameLoop/Path2D/PathFollow2D/Position2D.global_position
 	$YSort/Enemies.add_child(instance)
 

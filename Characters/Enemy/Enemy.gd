@@ -9,6 +9,9 @@ onready var sprite = $Sprite
 onready var attack_timer = $StartAttractTimer
 onready var stunned_timer = $StunnedTimer
 
+
+var crops 
+
 var rng = RandomNumberGenerator.new()
 
 var damage_taken
@@ -17,7 +20,8 @@ var avoid_force = 5
 var target
 var randomno
 var velocity = Vector2.ZERO
-
+var crop_target
+var crop_path
 
 
 enum {
@@ -25,10 +29,16 @@ enum {
 	FOLLOW,
 	ATTACK,
 	STUNNED,
-	HURT
+	HURT,
+	FOLLOWCROP,
+	DAMAGECROP,
+	SWITCHTOSURR
 }
 
 var state = SURROUND
+
+func give_buff(type):
+	print(str(self.name) + " is " + str(type))
 
 func randomize_circle_pos(): # randomizes random pos around the player
 	rng.randomize()
@@ -38,14 +48,21 @@ func _ready():
 	randomize_circle_pos()
 	anim.play("idle")
 
+
 func _physics_process(delta):
 	match state:
 		SURROUND: # surrounds player
-			move(get_circle_position(randomno), delta)
-			anim.play("Moving")
+			if state != FOLLOWCROP:
+				move(get_circle_position(randomno), delta)
+				anim.play("Moving")
+			else:
+				state = FOLLOWCROP
 		FOLLOW: # follows the player
-			move(player.global_position, delta)
-			anim.play("Moving")
+			if state != FOLLOWCROP:
+				move(player.global_position, delta)
+				anim.play("Moving")
+			else:
+				state = FOLLOWCROP
 		ATTACK:# attacks player with weapon
 			var hit_anims = ["Slash"]
 			var rand_anim  = choose(hit_anims)
@@ -59,11 +76,21 @@ func _physics_process(delta):
 			# DIE
 			if health <= 0:
 				queue_free()
+
 			# GET HIT
 #			anim.play("Hit")
 			health -= damage_taken
 			state = STUNNED
-
+		FOLLOWCROP:
+			if not crop_target.is_queued_for_deletion():
+				move(crop_target.global_position, delta)
+				anim.play("Moving")
+			else:
+				state = SWITCHTOSURR
+		DAMAGECROP:
+			velocity = Vector2()
+		SWITCHTOSURR:
+			state = SURROUND
 
 
 
@@ -106,7 +133,9 @@ func choose(array): # chooses random item in array
 	array.shuffle()
 	return array.front()
 
-
+func _crop_destroyed():
+	print("test")
+	crop_target = null
 
 
 func avoid_obstacle_steering():
@@ -124,3 +153,9 @@ func avoid_obstacle_steering():
 
 func _on_StartAttractTimer_timeout(): # attacks player after surrounding player for certain time
 	state = ATTACK
+
+	
+
+
+func _on_StunnedTimer_timeout():
+	state = SURROUND

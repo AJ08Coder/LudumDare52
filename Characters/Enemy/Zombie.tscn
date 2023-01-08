@@ -22,7 +22,7 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 8 )
 
-[node name="Zombie" instance=ExtResource( 1 )]
+[node name="Zombie" groups=["Zombie"] instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="1"]

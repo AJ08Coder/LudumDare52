@@ -93,6 +93,10 @@ shape = SubResource( 6 )
 texture = ExtResource( 7 )
 energy = 0.5
 
+[node name="PlantCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Attract" to="." method="_on_Attract_body_entered"]
 [connection signal="body_exited" from="Attract" to="." method="_on_Attract_body_exited"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]

@@ -7,15 +7,10 @@ var tile_size = 16
 var speed = 80
 var health = 100
 
-<<<<<<< HEAD
-onready var hand = $Hotbar/Hand
-
-=======
 onready var hand = $Hand
 onready var meele_weapon = $Hand/MeeleWeapon
 onready var sprite = $Sprite
 onready var animplayer = $AnimationPlayer
->>>>>>> 2a444faded1b09de5e5d05b8965ba20f22fceaab
 
 var crop_loc = []
 

@@ -13,10 +13,13 @@ onready var sprite = $Sprite
 onready var animplayer = $AnimationPlayer
 onready var plant_cooldown = $PlantCooldown
 
+signal health_changed
+
 var crop_loc = []
 
 func take_damage(amount):
 	health -= amount
+	emit_signal("health_changed", health)
 
 func choose_rand_item(list): # chooses random item off list
 	list.shuffle()
@@ -93,5 +96,4 @@ func _on_Attack_body_entered(body):
 func _on_Attack_body_exited(body):
 	#Enemy not in range to attack with weapon
 	if body.is_in_group("Enemy"):
-		body.attack_timer.start()
-		body.state = body.SURROUND # surround player
+				body.state = body.SURROUND # surround player

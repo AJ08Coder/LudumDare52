@@ -2,10 +2,6 @@ class_name HurtBox
 extends Area2D
 
 
-func _init():
-	collision_layer = 0 
-	collision_mask = 8 # can be detected by hitbox layer (layer 4)
-
 
 
 func _ready():

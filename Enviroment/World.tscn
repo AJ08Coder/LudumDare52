@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enviroment/World.gd" type="Script" id=2]
@@ -298,6 +298,17 @@ tracks/1/keys = {
 "values": [ 1 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.815686, 0.929412, 0.356863, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.152941, 0.152941, 0.152941, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
+
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 player_path = NodePath("YSort/Player")
@@ -335,6 +346,7 @@ offset = 495.797
 
 [node name="SpawnEnemies" type="Timer" parent="GameLoop"]
 wait_time = 2.0
+autostart = true
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -373,11 +385,8 @@ anims/NighttoDay = SubResource( 6 )
 anims/RESET = SubResource( 7 )
 
 [node name="Time" type="Timer" parent="Cycle"]
-wait_time = 60.0
-autostart = true
-
-[node name="Time2" type="Timer" parent="Cycle"]
-wait_time = 60.0
+wait_time = 10000.0
+one_shot = true
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -387,8 +396,19 @@ margin_right = 223.0
 margin_bottom = 63.0
 text = "time: 123"
 
+[node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -201.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 33.0
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
+value = 100.0
+percent_visible = false
+
 [connection signal="timeout" from="GameLoop/SpawnEnemies" to="." method="_on_SpawnEnemies_timeout"]
 [connection signal="turned_day_time" from="Cycle" to="." method="_on_Cycle_turned_day_time"]
 [connection signal="turned_night_time" from="Cycle" to="." method="_on_Cycle_turned_night_time"]
 [connection signal="timeout" from="Cycle/Time" to="Cycle" method="_on_Time_timeout"]
-[connection signal="timeout" from="Cycle/Time2" to="Cycle" method="_on_Time_timeout"]

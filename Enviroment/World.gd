@@ -10,10 +10,12 @@ var wave = [3,10,20,0]
 			# amount of enemies, last is win
 export(NodePath) var player_path
 onready var player = get_node(player_path)
+onready var player_health_bar = $CanvasLayer/PlayerHealthBar
+
 
 func _ready() -> void:
 	Global.world_node = self
-
+	player.connect("health_changed", self, "player_health_changed")
 
 
 func _on_SpawnEnemies_timeout():
@@ -25,6 +27,8 @@ func _on_SpawnEnemies_timeout():
 	instance.global_position = $GameLoop/Path2D/PathFollow2D/Position2D.global_position
 	$YSort/Enemies.add_child(instance)
 
+func player_health_changed(currenthealth):
+	player_health_bar.value = currenthealth
 
 func _on_Cycle_turned_night_time():
 	spawn_enemies.start()

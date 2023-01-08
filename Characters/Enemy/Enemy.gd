@@ -61,7 +61,7 @@ func _physics_process(delta):
 				queue_free()
 			# GET HIT
 #			anim.play("Hit")
-			health -= 1
+			health -= damage_taken
 			state = STUNNED
 
 

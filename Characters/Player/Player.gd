@@ -7,9 +7,8 @@ var tile_size = 16
 var speed = 80
 var health = 100
 
-onready var laser = $laser
 onready var hand = $Hotbar/Hand
-onready var meele_weapon = $Hotbar/MeeleWeapon
+
 
 var crop_loc = []
 

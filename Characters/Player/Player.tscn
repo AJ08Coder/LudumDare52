@@ -69,6 +69,19 @@ region_rect = Rect2( -38, 57, 0, 0 )
 anims/RESET = SubResource( 1 )
 anims/Walk = SubResource( 2 )
 
+[node name="Hand" type="Node2D" parent="."]
+
+[node name="Action" type="Position2D" parent="Hand"]
+position = Vector2( 13, 0 )
+__meta__ = {
+"_gizmo_extents_": 2.0
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Hand/Action"]
+polygon = PoolVector2Array( -2, -1, -1, 2, 1, 2, 2, 0, 1, -2, -1, -2 )
+
+[node name="MeeleWeapon" parent="Hand" instance=ExtResource( 6 )]
+
 [node name="Attract" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attract"]
@@ -78,21 +91,6 @@ shape = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 shape = SubResource( 6 )
-
-[node name="Hotbar" type="Node2D" parent="."]
-
-[node name="Hand" type="Node2D" parent="Hotbar"]
-
-[node name="Action" type="Position2D" parent="Hotbar/Hand"]
-position = Vector2( 13, 0 )
-__meta__ = {
-"_gizmo_extents_": 2.0
-}
-
-[node name="Polygon2D" type="Polygon2D" parent="Hotbar/Hand/Action"]
-polygon = PoolVector2Array( -2, -1, -1, 2, 1, 2, 2, 0, 1, -2, -1, -2 )
-
-[node name="MeeleWeapon" parent="Hotbar/Hand" instance=ExtResource( 6 )]
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 7 )

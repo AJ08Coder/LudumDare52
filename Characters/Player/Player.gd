@@ -12,6 +12,7 @@ onready var meele_weapon = $Hand/MeeleWeapon
 onready var sprite = $Sprite
 onready var animplayer = $AnimationPlayer
 onready var plant_cooldown = $PlantCooldown
+onready var weapon_anim = $Hand/MeeleWeapon/HitBox/AnimationPlayer
 
 signal health_changed
 
@@ -20,10 +21,16 @@ var crop_loc = []
 func take_damage(amount):
 	health -= amount
 	emit_signal("health_changed", health)
+	
 
 func choose_rand_item(list): # chooses random item off list
 	list.shuffle()
 	return list[0]
+
+func face(dir):
+	hand.scale.y = dir
+	
+	sprite.scale.x = dir
 
 func _physics_process(delta):
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up","move_down")
@@ -31,8 +38,8 @@ func _physics_process(delta):
 
 	move_and_slide(speed * move_direction)
 
-	if input_vector.x != 0:
-		sprite.flip_h = input_vector.x < 0
+#	if input_vector.x != 0:
+#		sprite.flip_h = input_vector.x < 0
 
 	if move_direction:
 		animplayer.play("Walk")
@@ -40,6 +47,12 @@ func _physics_process(delta):
 		animplayer.play("RESET")
 
 	hand.look_at(get_global_mouse_position())
+	
+	if get_global_mouse_position().x > global_position.x:
+		face(1)
+	elif get_global_mouse_position().x < global_position.x:
+		face(-1)
+
 
 
 	if Input.is_action_pressed("plant") and plant_cooldown.is_stopped():
@@ -54,7 +67,7 @@ func plant_seed():
 	spot.x += tile_size/2
 	spot.y += tile_size/2
 
-	crop_loc.append(Vector2(spot.x,spot.y))
+
 	# there is already a crop planted bish
 	if Global.world_node.crop_spots.find(spot) != -1:
 		return
@@ -68,9 +81,11 @@ func plant_seed():
 
 func _input(event):
 	if event.is_action_pressed("attack"):
-		meele_weapon.get_node("AnimationPlayer").play("Slash1")
+		weapon_anim.play("Slash")
+		
 
-
+func _ready():
+	weapon_anim.play("Idle")
 
 #Enemy AI
 
@@ -97,3 +112,8 @@ func _on_Attack_body_exited(body):
 	#Enemy not in range to attack with weapon
 	if body.is_in_group("Enemy"):
 				body.state = body.SURROUND # surround player
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Slash":
+		weapon_anim.play("Idle")

@@ -7,8 +7,15 @@ var tile_size = 16
 var speed = 80
 var health = 100
 
+<<<<<<< HEAD
 onready var hand = $Hotbar/Hand
 
+=======
+onready var hand = $Hand
+onready var meele_weapon = $Hand/MeeleWeapon
+onready var sprite = $Sprite
+onready var animplayer = $AnimationPlayer
+>>>>>>> 2a444faded1b09de5e5d05b8965ba20f22fceaab
 
 var crop_loc = []
 
@@ -23,20 +30,18 @@ func _physics_process(delta):
 
 	move_and_slide(speed * move_direction)
 
-	if input_vector.x > 0:
-		$Sprite.flip_h = false
-	elif input_vector.x <0:
-		$Sprite.flip_h = true
+	if input_vector.x != 0:
+		sprite.flip_h = input_vector.x < 0
 
 	if move_direction:
-		$AnimationPlayer.play("Walk")
+		animplayer.play("Walk")
 	else:
-		$AnimationPlayer.play("RESET")
+		animplayer.play("RESET")
 
-	$Hotbar/Hand.look_at(get_global_mouse_position())
+	hand.look_at(get_global_mouse_position())
 
 
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_pressed("plant"):
 		plant_seed()
 
 func plant_seed():
@@ -46,7 +51,7 @@ func plant_seed():
 	spot.y = stepify(hand.get_node("Action").global_position.y - tile_size/2, tile_size)
 	spot.x += tile_size/2
 	spot.y += tile_size/2
-	
+
 	crop_loc.append(Vector2(spot.x,spot.y))
 	# there is already a crop planted bish
 	if Global.world_node.crop_spots.find(spot) != -1:

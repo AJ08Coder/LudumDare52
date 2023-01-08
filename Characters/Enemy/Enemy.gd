@@ -40,7 +40,7 @@ var state = SURROUND
 
 func cleanse_buffs():
 	SPEED = 30
-	hit_box.damage = 10
+
 
 
 func give_buff(type: int):
@@ -51,7 +51,7 @@ func give_buff(type: int):
 
 	match type:
 		Global.crop_types.SPEED:
-			speed *= 2
+			SPEED *= 2
 
 		Global.crop_types.DAMAGE:
 			hit_box.damage *= 2

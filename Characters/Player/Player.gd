@@ -11,6 +11,7 @@ onready var hand = $Hand
 onready var meele_weapon = $Hand/MeeleWeapon
 onready var sprite = $Sprite
 onready var animplayer = $AnimationPlayer
+onready var plant_cooldown = $PlantCooldown
 
 var crop_loc = []
 
@@ -36,8 +37,9 @@ func _physics_process(delta):
 	hand.look_at(get_global_mouse_position())
 
 
-	if Input.is_action_pressed("plant"):
+	if Input.is_action_pressed("plant") and plant_cooldown.is_stopped():
 		plant_seed()
+		plant_cooldown.start()
 
 func plant_seed():
 	var spot := Vector2.ZERO

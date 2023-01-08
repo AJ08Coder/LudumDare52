@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Art/plaguedoctor.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Characters/Hurtbox.gd" type="Script" id=3]
-[ext_resource path="res://Art/scythe.png" type="Texture" id=4]
 [ext_resource path="res://Enviroment/Crop.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Characters/Hitbox.gd" type="Script" id=6]
+[ext_resource path="res://Characters/Player/MeeleWeapon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gradslol.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=7]
@@ -44,164 +43,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
-}
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 7.75, 5 )
-
-[sub_resource type="Animation" id=10]
-resource_name = "Idle"
-tracks/0/type = "value"
-tracks/0/path = NodePath("HitBox/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 10, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("HitBox/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=11]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 14.5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 9.036, 6.499 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("HitBox/Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 2 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("HitBox/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "Slash"
-length = 0.2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 9.036, -6.499 ), Vector2( 9.036, 6.499 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -14.5, 72.6 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("HitBox/Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 2, 3, 5, 6 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("HitBox/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
 }
 
 [sub_resource type="CircleShape2D" id=5]
@@ -250,35 +91,11 @@ __meta__ = {
 visible = false
 polygon = PoolVector2Array( -2, -1, -1, 2, 1, 2, 2, 0, 1, -2, -1, -2 )
 
-[node name="MeeleWeapon" type="Node2D" parent="Hand"]
-position = Vector2( 9.036, 6.499 )
+[node name="MeeleWeapon" parent="Hand" instance=ExtResource( 6 )]
 rotation = 0.253073
 
-[node name="HitBox" type="Area2D" parent="Hand/MeeleWeapon"]
-z_index = -1
-z_as_relative = false
-collision_layer = 0
-collision_mask = 32
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/MeeleWeapon/HitBox"]
-shape = SubResource( 8 )
-disabled = true
-
-[node name="Sprite" type="Sprite" parent="Hand/MeeleWeapon/HitBox"]
-position = Vector2( -2, -2 )
-texture = ExtResource( 4 )
-vframes = 7
+[node name="Sprite" parent="Hand/MeeleWeapon/HitBox" index="1"]
 frame = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand/MeeleWeapon/HitBox"]
-root_node = NodePath("../..")
-anims/Idle = SubResource( 10 )
-anims/RESET = SubResource( 11 )
-anims/Slash = SubResource( 9 )
 
 [node name="Attract" type="Area2D" parent="."]
 visible = false
@@ -308,3 +125,5 @@ one_shot = true
 [connection signal="body_exited" from="Attract" to="." method="_on_Attract_body_exited"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
 [connection signal="body_exited" from="Attack" to="." method="_on_Attack_body_exited"]
+
+[editable path="Hand/MeeleWeapon"]

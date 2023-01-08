@@ -1,6 +1,7 @@
 extends CanvasModulate
 
-onready var rich_text_label = $"../CanvasLayer/RichTextLabel"
+onready var timelabel = $"../CanvasLayer/Time"
+
 export var time = 1 # 1 = day 0 = night
 
 signal turned_day_time
@@ -13,7 +14,8 @@ func _ready():
 	$AnimationPlayer.play("RESET")
 
 func _process(delta):
-	rich_text_label.text = "time: " + str(round($Time.time_left))
+#	pass
+	timelabel.text = "Time: " + str(round($Time.time_left))
 
 func _on_Time_timeout():
 	if time == 1:

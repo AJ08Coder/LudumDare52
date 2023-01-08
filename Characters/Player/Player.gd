@@ -21,7 +21,16 @@ var crop_loc = []
 func take_damage(amount):
 	health -= amount
 	emit_signal("health_changed", health)
-	
+
+
+func give_buff(type):
+
+	if type == Global.crop_types.SPEED:
+		print("I AM SPEED")
+
+	if type == Global.crop_types.DAMAGE:
+		print("I HAVE ALMIGHTY STRENGTH")
+
 
 func choose_rand_item(list): # chooses random item off list
 	list.shuffle()
@@ -29,7 +38,7 @@ func choose_rand_item(list): # chooses random item off list
 
 func face(dir):
 	hand.scale.y = dir
-	
+
 	sprite.scale.x = dir
 
 func _physics_process(delta):
@@ -47,7 +56,7 @@ func _physics_process(delta):
 		animplayer.play("RESET")
 
 	hand.look_at(get_global_mouse_position())
-	
+
 	if get_global_mouse_position().x > global_position.x:
 		face(1)
 	elif get_global_mouse_position().x < global_position.x:
@@ -82,7 +91,7 @@ func plant_seed():
 func _input(event):
 	if event.is_action_pressed("attack"):
 		weapon_anim.play("Slash")
-		
+
 
 func _ready():
 	weapon_anim.play("Idle")

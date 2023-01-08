@@ -1,11 +1,19 @@
 extends Node2D
 
 
-func _ready() -> void:
-	pass
+onready var type = Global.crop_types.keys()[randi() % Global.crop_types.size()]
 
 
+func take_damage(hitbox):
+	# activate effect
+	var attacker = hitbox.get_owner()
 
+	attacker.give_buff(type)
+
+
+	# do a chopped crop animation then call queue_free
+	print("hit crop")
+	queue_free()
 
 
 func _exit_tree() -> void:

@@ -12,7 +12,7 @@ onready var stunned_timer = $StunnedTimer
 var rng = RandomNumberGenerator.new()
 
 var damage_taken
-var player #var declared in world script 
+var player #var declared in world script
 var avoid_force = 5
 var target
 var randomno
@@ -55,7 +55,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO # Stops movement
 			if stunned_timer.time_left == stunned_timer.wait_time: # Freezes for wait_time
 				stunned_timer.start()
-		HURT:# gets hit by player 
+		HURT:# gets hit by player
 			# DIE
 			if health <= 0:
 				queue_free()
@@ -86,7 +86,7 @@ func move(target, delta): # moves enemy to target
 		sprite.scale.x = -1
 		#$MeeleHitBox.scale.y = -1
 		#$MeeleHurtBox.scale.y = -1
-		
+
 func get_circle_position(random): # gets position around player
 	var kill_circle_centre = player.global_position
 	var angle = random * PI * 2;

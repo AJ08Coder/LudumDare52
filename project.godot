@@ -113,6 +113,7 @@ attack={
 2d_physics/layer_5="playerhurtbox"
 2d_physics/layer_6="enemyhurtbox"
 2d_physics/layer_7="enemyhitbox"
+2d_physics/layer_8="crops"
 
 [physics]
 

@@ -23,7 +23,7 @@ func take_damage(amount):
 	emit_signal("health_changed", health)
 
 
-func give_buff(type):
+func give_buff(type: int):
 
 	if type == Global.crop_types.SPEED:
 		print("I AM SPEED")

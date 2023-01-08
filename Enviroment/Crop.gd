@@ -1,7 +1,8 @@
 extends Node2D
 
 
-onready var type = Global.crop_types.keys()[randi() % Global.crop_types.size()]
+onready var type = Global.crop_types.get(Global.crop_types.keys()[randi() % Global.crop_types.size()])
+
 
 
 func take_damage(hitbox):

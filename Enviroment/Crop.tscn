@@ -35,7 +35,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 30 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.470588 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0.0784314 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("CollectArea/CollisionShape2D:disabled")
@@ -138,5 +138,6 @@ energy = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Grow"
+playback_speed = 59.54
 anims/Grow = SubResource( 2 )
 anims/RESET = SubResource( 3 )

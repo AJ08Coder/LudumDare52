@@ -11,7 +11,6 @@ func _ready():
 
 func _process(delta):
 	rich_text_label.text = "time: " + str(round($Time.time_left))
-	print(time)
 
 func _on_Time_timeout():
 	if time == 1:

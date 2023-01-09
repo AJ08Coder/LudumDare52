@@ -38,9 +38,8 @@ func give_buff(type: int):
 			buff_animation_player.play("Speed")
 		Global.crop_types.HEALTH:
 			if not health >= 100:
-				show_health_bar()
 				health += 10
-
+			show_health_bar()
 		Global.crop_types.TELEPORT:
 			instance_and_play_particle_at(global_position,Color(0.576471, 0.223529, 1))
 			self.global_position = Global.get_tele_pos()

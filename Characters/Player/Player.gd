@@ -43,7 +43,7 @@ func take_damage(amount):
 	health -= amount
 	if health <= 0:
 		SoundManager.death.play()
-		emit_signal("game_over")
+		emit_signal("game_over", owner.viewday)
 	else:
 		emit_signal("health_changed", health)
 	hurt.play("Hurt")

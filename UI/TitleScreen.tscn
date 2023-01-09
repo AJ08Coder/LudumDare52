@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Art/crop.png" type="Texture" id=1]
 [ext_resource path="res://Art/TeleportPlant.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://UI/theme.tres" type="Theme" id=6]
 [ext_resource path="res://UI/TitleScreen.gd" type="Script" id=7]
 [ext_resource path="res://UI/Fonts/HopeGold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://UI/FullScreen.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=2]
 size = 55
@@ -137,3 +138,11 @@ position = Vector2( 290, 123 )
 texture = ExtResource( 1 )
 vframes = 4
 frame = 3
+
+[node name="FullScreen" parent="." instance=ExtResource( 9 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_left = -40.0
+margin_top = 10.0
+margin_right = -12.0
+margin_bottom = 38.0

@@ -420,9 +420,6 @@ material = SubResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="LoseScreen" parent="CanvasLayer" instance=ExtResource( 8 )]
-visible = false
-
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 margin_top = 6.0
 margin_right = 500.0
@@ -469,6 +466,9 @@ margin_right = 500.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
+
+[node name="LoseScreen" parent="CanvasLayer" instance=ExtResource( 8 )]
+visible = false
 
 [node name="TeleportReference" type="ReferenceRect" parent="."]
 margin_left = 21.0

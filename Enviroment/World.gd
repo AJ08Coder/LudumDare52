@@ -9,9 +9,9 @@ var viewday = 1
 var skeleton = preload("res://Characters/Enemy/Skeleton.tscn")
 var zombie = preload("res://Characters/Enemy/Zombie.tscn")
 onready var spawn_enemies = $GameLoop/SpawnEnemies
-var wave: Array = 		[5,10,16,30]
+var wave: Array = 		[5,10,16,30,35]
 			# amount of enemies
-var nightlength: Array = [15,30,50,60]
+var nightlength: Array = [15,30,50,60,60]
 export(NodePath) var player_path
 onready var player = get_node(player_path)
 onready var player_health_bar = $CanvasLayer/HBoxContainer/PlayerHealthBar

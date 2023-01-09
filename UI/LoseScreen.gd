@@ -10,7 +10,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 	retry.connect("pressed", self, "retry_pressed")
 	exit.connect("pressed", self, "exit_pressed")
-
+	
 
 func retry_pressed():
 	SoundManager.click.play()
@@ -22,8 +22,8 @@ func exit_pressed():
 	get_tree().change_scene("res://UI/TitleScreen.tscn")
 
 
-func game_over():
+func game_over(days):
 	visible = true
 	get_tree().paused = true
 	$AnimationPlayer.play("Blur")
-
+	$Label.text = "You died after " + str(days) + " day/s"

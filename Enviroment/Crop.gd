@@ -7,7 +7,7 @@ var SpeedPlant = preload("res://Art/crop.png")
 var TeleportPlant = preload("res://Art/TeleportPlant.png")
 var HealthPlant  = preload("res://Art/HealthPlant.png")
 var StrengthPlant = preload("res://Art/StrengthPlant.png")
-
+var harvestsound = preload("res://Sounds/Harvest.tscn")
 
 onready var sprite: Sprite = $Sprite
 
@@ -35,6 +35,8 @@ func take_damage(hitbox):
 
 	# do a chopped crop animation then call queue_free
 	print("hit crop")
+	SoundManager.harvest.global_position = global_position
+	SoundManager.harvest.play()
 	queue_free()
 
 
@@ -62,10 +64,13 @@ func _on_Attract_body_exited(body): # enemy left range
 		enemies_in_range.erase(body) #erase from range
 
 
+
 func _on_Life_timeout(): # end of life
 	if current_attacker in enemies_in_range:
 		current_attacker.give_buff(type)
 		current_attacker.state = current_attacker.SWITCHTOSURR
 		for i in enemies_in_range:
 			i.state = i.SWITCHTOSURR
+		SoundManager.harvest.global_position = global_position
+		SoundManager.harvest.play()
 		queue_free()

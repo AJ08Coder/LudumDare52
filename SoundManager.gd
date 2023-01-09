@@ -1,4 +1,5 @@
 extends Node
 
-func play_sound(soundname):
-	get_node(soundname).play()
+onready var click: AudioStreamPlayer = $Click
+
+onready var harvest: AudioStreamPlayer2D = $Harvest

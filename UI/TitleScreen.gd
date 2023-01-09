@@ -11,11 +11,11 @@ func _ready() -> void:
 
 func play():
 	get_tree().change_scene("res://Enviroment/World.tscn")
-	SoundManager.play_sound("Click")
+	SoundManager.click.play()
 
 
 func quit():
 	get_tree().quit()
-	SoundManager.play_sound("Click")
+	SoundManager.click.play()
 
 

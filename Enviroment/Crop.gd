@@ -34,7 +34,7 @@ func take_damage(hitbox):
 	attacker.give_buff(type)
 
 	if type == Global.crop_types.TELEPORT:
-		Sounds.teleport.play()
+		SoundManager.teleport.play()
 
 	# do a chopped crop animation then call queue_free
 

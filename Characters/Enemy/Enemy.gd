@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var SPEED: int = 30
 export var radius: int = 40
-export var health: int = 100 
+export var health: int = 100
 
 var has_buff = false
 onready var anim = $AnimationPlayer
@@ -40,7 +40,7 @@ func play_anim(animation):
 	anim.play(animation)
 	
 
-	
+
 
 enum {
 	SURROUND,
@@ -139,7 +139,7 @@ func move(target, delta): # moves enemy to target
 #	steering += avoid_obstacle_steering()
 	velocity += steering
 	velocity = move_and_slide(velocity)
-	
+
 
 	#$MeeleHitBox.look_at(player.global_position)
 	if player.global_position.x > global_position.x:  # flips sprite depending on where player is located

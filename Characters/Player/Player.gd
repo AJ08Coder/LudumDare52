@@ -9,7 +9,7 @@ var health = 100
 
 var default_speed = 80
 var default_health = 100
-var default_damage = 10
+var default_damage = 25
 
 onready var hand = $Hand
 onready var meele_weapon = $Hand/MeeleWeapon
@@ -19,6 +19,7 @@ onready var plant_cooldown = $PlantCooldown
 onready var weapon_anim = $Hand/MeeleWeapon/HitBox/AnimationPlayer
 onready var hit_box: Area2D = $Hand/MeeleWeapon/HitBox
 onready var buff_timer: Timer = $BuffTimer
+onready var buff_animation_player: AnimationPlayer = $BuffAnimationPlayer
 
 signal health_changed
 
@@ -38,10 +39,10 @@ func give_buff(type: int):
 	match type:
 		Global.crop_types.SPEED:
 			speed *= 2
-
+			buff_animation_player.play("Speed")
 		Global.crop_types.DAMAGE:
-			hit_box.damage *= 2
-
+			hit_box.damage *= 3
+			buff_animation_player.play("Strength")
 		Global.crop_types.HEALTH:
 			health += 10
 
@@ -54,6 +55,7 @@ func give_buff(type: int):
 func cleanse_buffs():
 	speed = default_speed
 	hit_box.damage = default_damage
+	buff_animation_player.play("RESET")
 
 
 
@@ -119,7 +121,7 @@ func _input(event):
 
 func _ready():
 	weapon_anim.play("Idle")
-
+	buff_animation_player.play("RESET")	
 #Enemy AI
 
 func _on_Attract_body_entered(body):

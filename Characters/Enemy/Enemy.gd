@@ -12,6 +12,8 @@ onready var stunned_timer = $StunnedTimer
 onready var buff_timer: Timer = $BuffTimer
 onready var health_bar: ProgressBar = $HealthBar
 onready var health_bar_timer: Timer = $HealthBarTimer
+onready var buff_anim_timer: Timer = $BuffAnimTimer
+onready var buff_animation_player: AnimationPlayer = $BuffAnimationPlayer
 
 export(String) var moving_anim
 export(String) var idle_anim
@@ -31,10 +33,12 @@ var randomno
 var velocity = Vector2.ZERO
 var crop_target
 var crop_path
+ 
+export var main_target = "player"
 
 func play_anim(animation):
 	anim.play(animation)
-
+	
 
 	
 
@@ -54,8 +58,8 @@ var state = SURROUND
 func cleanse_buffs():
 	SPEED = 30
 	modulate = modulate_color
-
-
+	buff_animation_player.play("RESET")
+	has_buff = false
 
 
 
@@ -69,7 +73,11 @@ func _ready():
 	randomize_circle_pos()
 	play_anim(idle_anim)
 	modulate = modulate_color
+	buff_animation_player.play("RESET")
 
+		
+	
+	
 func _physics_process(delta):
 	match state:
 		SURROUND: # surrounds player
@@ -95,6 +103,7 @@ func _physics_process(delta):
 				stunned_timer.start()
 		HURT:# gets hit by player
 			# DIE
+			health -= damage_taken
 			if health <= 0:
 				queue_free()
 
@@ -102,12 +111,15 @@ func _physics_process(delta):
 			health_bar.visible = true
 			health_bar_timer.start()
 			play_anim(hurt_anim)
-			health -= damage_taken
+			
 			state = STUNNED
 		FOLLOWCROP:
-			if is_instance_valid(crop_target) == true:
-				move(crop_target.global_position, delta)
-				play_anim(moving_anim)
+			if has_buff == false:
+				if is_instance_valid(crop_target) == true:
+					move(crop_target.global_position, delta)
+					play_anim(moving_anim)
+				else:
+					state = SWITCHTOSURR
 			else:
 				state = SWITCHTOSURR
 		DAMAGECROP:
@@ -163,17 +175,6 @@ func _crop_destroyed():
 	crop_target = null
 
 
-func avoid_obstacle_steering():
-	pass
-#	rays.rotation = velocity.angle()
-#	for ray in rays.get_children():
-#		ray.cast_to.x = velocity.length()
-#		if ray.is_colliding():
-#			if ray.get_collider().is_in_group("Enemy"):
-#				var obstacle = ray.get_collider()
-#				return (global_position + velocity - obstacle.global_position).normalized() * avoid_force
-#	return Vector2.ZERO
-
 
 
 func _on_StartAttractTimer_timeout(): # attacks player after surrounding player for certain time
@@ -192,3 +193,7 @@ func _on_BuffTimer_timeout() -> void:
 
 func _on_HealthBarTimer_timeout() -> void:
 	health_bar.visible = false
+
+
+func _on_BuffAnimTimer_timeout() -> void:
+	cleanse_buffs()

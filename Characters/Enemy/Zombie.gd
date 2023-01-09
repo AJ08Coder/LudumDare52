@@ -12,8 +12,14 @@ func give_buff(type: int):
 
 	match type:
 		Global.crop_types.DAMAGE:
-			hit_box.damage *= 2
-			sprite.modulate = Color(0,0,0)
+			hit_box.damage *= 3
+			buff_animation_player.play("Strength")
 		Global.crop_types.SPEED:
 			SPEED *= 2
-			sprite.modulate = Color(255,255,255)
+			buff_animation_player.play("Speed")
+		Global.crop_types.HEALTH:
+			if not health >= 100:
+				health += 10
+
+		Global.crop_types.TELEPORT:
+			self.global_position = Global.get_tele_pos()

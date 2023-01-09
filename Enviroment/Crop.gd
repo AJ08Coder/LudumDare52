@@ -3,12 +3,25 @@ extends Node2D
 
 onready var type = Global.crop_types.get(Global.crop_types.keys()[randi() % Global.crop_types.size()])
 
+var SpeedPlant = preload("res://Art/crop.png")
+var TeleportPlant = preload("res://Art/TeleportPlant.png")
+
+onready var sprite: Sprite = $Sprite
+
 var enemies_in_range = []
 onready var attract_coll = $Attract/CollisionShape2D
 onready var dmgspot_coll = $DamageSpot/CollisionShape2D
 var current_attacker = null
 onready var life = $Life
-
+func _ready() -> void:
+	if type == Global.crop_types.SPEED:
+		sprite.texture = SpeedPlant
+	elif type == Global.crop_types.DAMAGE:
+		pass
+	elif type == Global.crop_types.HEALTH:
+		pass
+	elif type == Global.crop_types.TELEPORT:
+		sprite.texture = TeleportPlant
 
 func take_damage(hitbox):
 	# activate effect

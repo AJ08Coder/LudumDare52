@@ -86,7 +86,7 @@ margin_right = 84.0
 margin_bottom = 60.0
 text = "Retry"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 64.0
 margin_right = 84.0
 margin_bottom = 94.0

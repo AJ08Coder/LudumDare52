@@ -2,22 +2,22 @@ extends Control
 
 
 onready var retry: Button = $CenterContainer/VBoxContainer/Retry
-onready var quit: Button = $CenterContainer/VBoxContainer/Quit
+onready var exit: Button = $CenterContainer/VBoxContainer/Exit
 
 
 func _ready() -> void:
 	visible = false
 	$AnimationPlayer.play("RESET")
 	retry.connect("pressed", self, "retry_pressed")
-	quit.connect("pressed", self, "quit_pressed")
+	exit.connect("pressed", self, "exit_pressed")
 
 
 func retry_pressed():
 	get_tree().reload_current_scene()
 
 
-func quit_pressed():
-	get_tree().quit()
+func exit_pressed():
+	get_tree().change_scene("res://UI/TitleScreen.tscn")
 
 
 func game_over():

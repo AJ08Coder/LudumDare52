@@ -22,6 +22,7 @@ var instance
 var enemiesspawned = 0
 
 func _ready() -> void:
+	get_tree().paused = false
 	Global.world_node = self
 	Global.tele_ref = $TeleportReference
 	player.connect("health_changed", self, "player_health_changed")

@@ -55,7 +55,7 @@ func _on_Cycle_turned_night_time():
 	$Cycle/NightTime.wait_time = nightlength[day]
 	if day >= nightlength.size():
 		day = nightlength.size() -1
-	
+
 func _on_Cycle_turned_day_time():
 	spawn_enemies.stop()
 	enemiesspawned = 0

@@ -113,7 +113,7 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("plant") and plant_cooldown.is_stopped():
 		plant_seed()
-		
+
 		plant_cooldown.start()
 
 func plant_seed():

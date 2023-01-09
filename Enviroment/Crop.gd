@@ -17,14 +17,15 @@ onready var dmgspot_coll = $DamageSpot/CollisionShape2D
 var current_attacker = null
 onready var life = $Life
 func _ready() -> void:
-	if type == Global.crop_types.SPEED:
-		sprite.texture = SpeedPlant
-	elif type == Global.crop_types.DAMAGE:
-		sprite.texture = StrengthPlant
-	elif type == Global.crop_types.HEALTH:
-		sprite.texture = HealthPlant
-	elif type == Global.crop_types.TELEPORT:
-		sprite.texture = TeleportPlant
+	match type:
+		Global.crop_types.SPEED:
+			sprite.texture = SpeedPlant
+		Global.crop_types.DAMAGE:
+			sprite.texture = StrengthPlant
+		Global.crop_types.HEALTH:
+			sprite.texture = HealthPlant
+		Global.crop_types.TELEPORT:
+			sprite.texture = TeleportPlant
 
 func take_damage(hitbox):
 	# activate effect
@@ -32,9 +33,10 @@ func take_damage(hitbox):
 
 	attacker.give_buff(type)
 
+	if type == Global.crop_types.TELEPORT:
+		Sounds.teleport.play()
 
 	# do a chopped crop animation then call queue_free
-	print("hit crop")
 	queue_free()
 
 

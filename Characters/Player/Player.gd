@@ -25,6 +25,8 @@ onready var hurt: AnimationPlayer = $Hurt
 onready var particle = preload("res://Enviroment/ExpolsiveParticle.tscn")
 
 signal health_changed
+signal game_over
+
 
 var crop_loc = []
 
@@ -39,6 +41,10 @@ func instance_and_play_particle_at(loc, color):
 
 func take_damage(amount):
 	health -= amount
+	if health <= 0:
+		emit_signal("game_over")
+	else:
+		emit_signal("health_changed", health)
 	hurt.play("Hurt")
 	emit_signal("health_changed", health)
 

@@ -7,6 +7,7 @@
 [ext_resource path="res://Enviroment/Cycle.gd" type="Script" id=5]
 [ext_resource path="res://UI/HUD/Time.gd" type="Script" id=6]
 [ext_resource path="res://UI/theme.tres" type="Theme" id=7]
+[ext_resource path="res://UI/LoseScreen.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 331, 26 )
@@ -465,6 +466,9 @@ margin_right = 500.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
+
+[node name="LoseScreen" parent="CanvasLayer" instance=ExtResource( 8 )]
+visible = false
 
 [node name="TeleportReference" type="ReferenceRect" parent="."]
 margin_left = 21.0

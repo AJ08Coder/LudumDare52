@@ -33,6 +33,9 @@ var crop_path
 func play_anim(animation):
 	anim.play(animation)
 
+
+	
+
 enum {
 	SURROUND,
 	FOLLOW,
@@ -63,7 +66,7 @@ func randomize_circle_pos(): # randomizes random pos around the player
 func _ready():
 	randomize_circle_pos()
 	play_anim(idle_anim)
-
+	modulate = modulate_color
 
 func _physics_process(delta):
 	match state:
@@ -94,7 +97,7 @@ func _physics_process(delta):
 				queue_free()
 
 			# GET HIT
-#			anim.play("Hit")
+			play_anim(hurt_anim)
 			health -= damage_taken
 			state = STUNNED
 		FOLLOWCROP:
@@ -105,6 +108,7 @@ func _physics_process(delta):
 				state = SWITCHTOSURR
 		DAMAGECROP:
 			velocity = Vector2()
+			play_anim(idle_anim)
 		SWITCHTOSURR:
 			state = SURROUND
 
@@ -118,7 +122,7 @@ func move(target, delta): # moves enemy to target
 #	steering += avoid_obstacle_steering()
 	velocity += steering
 	velocity = move_and_slide(velocity)
-
+	
 
 	#$MeeleHitBox.look_at(player.global_position)
 	if player.global_position.x > global_position.x:  # flips sprite depending on where player is located

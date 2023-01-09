@@ -5,7 +5,7 @@ func _process(delta):
 	$HitBox.look_at(player.global_position)
 
 func give_buff(type: int):
-
+	has_buff = true
 	if not buff_timer.is_stopped():
 		cleanse_buffs()
 	buff_timer.start()

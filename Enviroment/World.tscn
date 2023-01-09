@@ -201,7 +201,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.207843, 0.203922, 0.356863, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.176471, 0.172549, 0.376471, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:time")
@@ -243,7 +243,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.207843, 0.203922, 0.356863, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.176471, 0.172549, 0.376471, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:time")
@@ -385,12 +385,11 @@ anims/NighttoDay = SubResource( 6 )
 anims/RESET = SubResource( 7 )
 
 [node name="DayTime" type="Timer" parent="Cycle"]
-wait_time = 60.0
 one_shot = true
 autostart = true
 
 [node name="NightTime" type="Timer" parent="Cycle"]
-wait_time = 20.0
+wait_time = 100.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

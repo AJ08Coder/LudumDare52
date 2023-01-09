@@ -1,4 +1,6 @@
 extends Node
 
-func play_sound(soundname):
-	get_node(soundname).play()
+
+
+
+onready var teleport: AudioStreamPlayer2D = $Teleport

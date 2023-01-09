@@ -10,7 +10,7 @@ var wave = [3,10,20,0]
 			# amount of enemies, last is win
 export(NodePath) var player_path
 onready var player = get_node(player_path)
-onready var player_health_bar = $CanvasLayer/PlayerHealthBar
+onready var player_health_bar = $CanvasLayer/HBoxContainer/PlayerHealthBar
 onready var crops = $YSort/Crops
 
 

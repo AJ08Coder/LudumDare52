@@ -1,6 +1,6 @@
 extends CanvasModulate
 
-onready var timelabel = $"../CanvasLayer/Time"
+onready var timelabel = $"../CanvasLayer/HBoxContainer/Time"
 onready var day_time: Timer = $DayTime
 onready var night_time: Timer = $NightTime
 export var time = 1 # 1 = day 0 = night

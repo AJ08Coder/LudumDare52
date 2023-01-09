@@ -50,4 +50,6 @@ func give_buff(type: int):
 				health += 10
 				show_health_bar()
 		Global.crop_types.TELEPORT:
+			instance_and_play_particle_at(global_position,Color(0.576471, 0.223529, 1))
 			self.global_position = Global.get_tele_pos()
+			instance_and_play_particle_at(global_position,Color(0.576471, 0.223529, 1))

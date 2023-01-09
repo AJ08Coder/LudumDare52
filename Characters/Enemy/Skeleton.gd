@@ -42,7 +42,9 @@ func give_buff(type: int):
 				health += 10
 
 		Global.crop_types.TELEPORT:
+			instance_and_play_particle_at(global_position,Color(0.576471, 0.223529, 1))
 			self.global_position = Global.get_tele_pos()
+			instance_and_play_particle_at(global_position,Color(0.576471, 0.223529, 1))
 
 
 func _on_SwitchPos_timeout() -> void:

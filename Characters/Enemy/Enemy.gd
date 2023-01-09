@@ -15,6 +15,8 @@ onready var health_bar_timer: Timer = $HealthBarTimer
 onready var buff_anim_timer: Timer = $BuffAnimTimer
 onready var buff_animation_player: AnimationPlayer = $BuffAnimationPlayer
 
+var particle = preload("res://Enviroment/ExpolsiveParticle.tscn")
+
 export(String) var moving_anim
 export(String) var idle_anim
 export(String) var slash_anim
@@ -172,7 +174,14 @@ func _on_StartAttractTimer_timeout(): # attacks player after surrounding player 
 	state = ATTACK
 
 
-
+func instance_and_play_particle_at(loc, color):
+	var instance = particle.instance()
+	instance.global_position = loc
+	instance.modulate = color
+	get_parent().add_child(instance)
+	instance.emitting = true
+	if not instance.is_emitting():
+		instance.queue_free()
 
 func _on_StunnedTimer_timeout():
 	state = SURROUND

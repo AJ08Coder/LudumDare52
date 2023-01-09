@@ -19,7 +19,7 @@ export(String) var slash_anim
 export(String) var hurt_anim
 export(Color) var modulate_color
 
-var crops 
+var crops
 
 var rng = RandomNumberGenerator.new()
 
@@ -179,7 +179,7 @@ func avoid_obstacle_steering():
 func _on_StartAttractTimer_timeout(): # attacks player after surrounding player for certain time
 	state = ATTACK
 
-	
+
 
 
 func _on_StunnedTimer_timeout():

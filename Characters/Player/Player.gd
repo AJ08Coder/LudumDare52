@@ -20,6 +20,9 @@ onready var weapon_anim = $Hand/MeeleWeapon/HitBox/AnimationPlayer
 onready var hit_box: Area2D = $Hand/MeeleWeapon/HitBox
 onready var buff_timer: Timer = $BuffTimer
 onready var buff_animation_player: AnimationPlayer = $BuffAnimationPlayer
+onready var hurt: AnimationPlayer = $Hurt
+
+onready var particle = preload("res://Enviroment/ExpolsiveParticle.tscn")
 
 signal health_changed
 signal game_over
@@ -27,12 +30,23 @@ signal game_over
 
 var crop_loc = []
 
+func instance_and_play_particle_at(loc, color):
+	var instance = particle.instance()
+	instance.global_position = loc
+	instance.modulate = color
+	get_parent().add_child(instance)
+	instance.emitting = true
+	if not instance.is_emitting():
+		instance.queue_free()
+
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
 		emit_signal("game_over")
 	else:
 		emit_signal("health_changed", health)
+	hurt.play("Hurt")
+	emit_signal("health_changed", health)
 
 
 func give_buff(type: int):
@@ -53,8 +67,9 @@ func give_buff(type: int):
 			emit_signal("health_changed", health)
 
 		Global.crop_types.TELEPORT:
+			instance_and_play_particle_at(global_position,Color(0.576471, 0.223529, 1))
 			self.global_position = Global.get_tele_pos()
-
+			instance_and_play_particle_at(global_position,Color(0.576471, 0.223529, 1))
 
 
 
@@ -98,6 +113,7 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("plant") and plant_cooldown.is_stopped():
 		plant_seed()
+		
 		plant_cooldown.start()
 
 func plant_seed():
@@ -120,6 +136,7 @@ func plant_seed():
 	# crop params go here later
 	crop_inst.global_position = spot
 	get_parent().get_node("Crops").add_child(crop_inst)
+	instance_and_play_particle_at(spot,Color(0.713726, 0.407843, 0.117647))
 
 
 func _input(event):

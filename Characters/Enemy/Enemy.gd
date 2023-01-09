@@ -76,7 +76,9 @@ func _ready():
 	buff_animation_player.play("RESET")
 
 
-
+func show_health_bar():
+	health_bar.visible = true
+	health_bar_timer.start()
 
 func _physics_process(delta):
 	match state:
@@ -86,17 +88,7 @@ func _physics_process(delta):
 				play_anim(moving_anim)
 			else:
 				state = FOLLOWCROP
-		FOLLOW: # follows the player
-			if state != FOLLOWCROP:
-				move(player.global_position, delta)
-				play_anim(moving_anim)
-			else:
-				state = FOLLOWCROP
-		ATTACK:# attacks player with weapon
-			var hit_anims = [slash_anim]
-			var rand_anim  = choose(hit_anims)
-			move(player.global_position, delta)
-			play_anim(rand_anim)
+
 		STUNNED: # freezes when hit
 			velocity = Vector2.ZERO # Stops movement
 			if stunned_timer.time_left == stunned_timer.wait_time: # Freezes for wait_time
@@ -108,8 +100,7 @@ func _physics_process(delta):
 				queue_free()
 
 			# GET HIT
-			health_bar.visible = true
-			health_bar_timer.start()
+			show_health_bar()
 			play_anim(hurt_anim)
 
 			state = STUNNED

@@ -48,13 +48,13 @@ func give_buff(type: int):
 func _on_SwitchPos_timeout() -> void:
 	randomize_circle_pos()
 
-func _shoot(target):
+func _shoot():
 	var instance = arrow.instance()
 	instance.global_position = global_position
-	instance.target = target
+	instance.target = player.global_position
 	get_parent().add_child(instance)
 
 func _on_ShootTimer_timeout() -> void:
 	$BowAnim.play("Shoot")
-	_shoot(player.global_position)
+	
 	

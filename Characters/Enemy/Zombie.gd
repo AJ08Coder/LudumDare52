@@ -1,6 +1,19 @@
 extends "res://Characters/Enemy/Enemy.gd"
 onready var hit_box: Area2D = $HitBox
 
+var demon = preload("res://Art/demon.png")
+
+var default_damage = 10
+
+func _ready() -> void:
+	var rng = [1,2,3,4,5]
+	if choose(rng) == 4:
+		sprite.texture =demon
+		hit_box.damage = 25
+		default_damage = 25
+		health= 200
+		health_bar.max_value = 200
+
 func _physics_process(delta: float) -> void:
 	match state:
 		FOLLOW: # follows the player
@@ -22,6 +35,7 @@ func give_buff(type: int):
 	has_buff = true
 	if not buff_timer.is_stopped():
 		cleanse_buffs()
+		hit_box.damage = default_damage
 	buff_timer.start()
 
 	match type:

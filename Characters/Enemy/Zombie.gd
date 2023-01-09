@@ -13,7 +13,7 @@ func give_buff(type: int):
 	match type:
 		Global.crop_types.DAMAGE:
 			hit_box.damage *= 2
-			modulate = Color(0,0,0)
+			sprite.modulate = Color(0,0,0)
 		Global.crop_types.SPEED:
 			SPEED *= 2
-			modulate = Color(255,255,255)
+			sprite.modulate = Color(255,255,255)

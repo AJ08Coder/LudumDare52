@@ -33,7 +33,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://Enviroment/Global.gd"
-Sounds="*res://Sounds/Sounds.tscn"
+SoundManager="*res://SoundManager.tscn"
 
 [display]
 

@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sounds/click.wav" type="AudioStream" id=1]
 [ext_resource path="res://SoundManager.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/harvest.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/teleport.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/death.wav" type="AudioStream" id=5]
 
 [node name="SoundManager" type="Node"]
+pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
@@ -15,3 +18,8 @@ volume_db = 3.0
 stream = ExtResource( 3 )
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 7.0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )

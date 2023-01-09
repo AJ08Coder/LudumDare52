@@ -13,10 +13,12 @@ func _ready() -> void:
 
 
 func retry_pressed():
+	SoundManager.click.play()
 	get_tree().reload_current_scene()
 
 
 func exit_pressed():
+	SoundManager.click.play()
 	get_tree().change_scene("res://UI/TitleScreen.tscn")
 
 

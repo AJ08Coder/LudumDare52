@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Art/plaguedoctor.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://gradslol.png" type="Texture" id=7]
 [ext_resource path="res://Art/shadow.png" type="Texture" id=8]
 [ext_resource path="res://Sounds/swipe.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/plant.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 3, 6.5 )
@@ -439,6 +440,9 @@ anims/Strength = SubResource( 13 )
 [node name="Hurt" type="AnimationPlayer" parent="."]
 anims/Hurt = SubResource( 15 )
 anims/RESET = SubResource( 16 )
+
+[node name="PlantSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
 
 [connection signal="animation_finished" from="Hand/MeeleWeapon/HitBox/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Attract" to="." method="_on_Attract_body_entered"]

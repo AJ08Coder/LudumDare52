@@ -22,6 +22,7 @@ func _ready() -> void:
 	Global.world_node = self
 	Global.tele_ref = $TeleportReference
 	player.connect("health_changed", self, "player_health_changed")
+	player.connect("game_over", $CanvasLayer/LoseScreen, "game_over")
 
 func _process(delta: float) -> void:
 	wavetext.text = "Day: " + str(day+1)
@@ -38,7 +39,7 @@ func _on_SpawnEnemies_timeout():
 		instance.global_position = $GameLoop/Path2D/PathFollow2D/Position2D.global_position
 		$YSort/Enemies.add_child(instance)
 		enemiesspawned += 1
-	
+
 func player_health_changed(currenthealth):
 	player_health_bar.value = currenthealth
 

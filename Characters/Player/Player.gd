@@ -22,12 +22,17 @@ onready var buff_timer: Timer = $BuffTimer
 onready var buff_animation_player: AnimationPlayer = $BuffAnimationPlayer
 
 signal health_changed
+signal game_over
+
 
 var crop_loc = []
 
 func take_damage(amount):
 	health -= amount
-	emit_signal("health_changed", health)
+	if health <= 0:
+		emit_signal("game_over")
+	else:
+		emit_signal("health_changed", health)
 
 
 func give_buff(type: int):

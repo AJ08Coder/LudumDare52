@@ -1,13 +1,69 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/theme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/LoseScreen.gd" type="Script" id=2]
 
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float lod: hint_range(0.0, 5) = 0.0;
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, lod);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/lod = 0.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "Blur"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blur:material:shader_param/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.5, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blur:material:shader_param/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
 [node name="LoseScreen" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.0470588, 0.0470588, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Blur = SubResource( 3 )
+anims/RESET = SubResource( 4 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0

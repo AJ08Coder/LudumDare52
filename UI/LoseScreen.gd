@@ -7,6 +7,7 @@ onready var quit: Button = $CenterContainer/VBoxContainer/Quit
 
 func _ready() -> void:
 	visible = false
+	$AnimationPlayer.play("RESET")
 	retry.connect("pressed", self, "retry_pressed")
 	quit.connect("pressed", self, "quit_pressed")
 
@@ -21,4 +22,6 @@ func quit_pressed():
 
 func game_over():
 	visible = true
+	get_tree().paused = true
+	$AnimationPlayer.play("Blur")
 

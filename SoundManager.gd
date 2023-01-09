@@ -5,3 +5,5 @@ onready var click: AudioStreamPlayer = $Click
 onready var harvest: AudioStreamPlayer2D = $Harvest
 
 onready var teleport: AudioStreamPlayer2D = $Teleport
+
+onready var death: AudioStreamPlayer2D = $Death

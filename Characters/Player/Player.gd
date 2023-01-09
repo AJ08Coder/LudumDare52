@@ -42,6 +42,7 @@ func instance_and_play_particle_at(loc, color):
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
+		SoundManager.death.play()
 		emit_signal("game_over")
 	else:
 		emit_signal("health_changed", health)

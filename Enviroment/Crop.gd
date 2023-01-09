@@ -5,6 +5,9 @@ onready var type = Global.crop_types.get(Global.crop_types.keys()[randi() % Glob
 
 var SpeedPlant = preload("res://Art/crop.png")
 var TeleportPlant = preload("res://Art/TeleportPlant.png")
+var HealthPlant  = preload("res://Art/HealthPlant.png")
+var StrengthPlant = preload("res://Art/StrengthPlant.png")
+
 
 onready var sprite: Sprite = $Sprite
 
@@ -17,9 +20,9 @@ func _ready() -> void:
 	if type == Global.crop_types.SPEED:
 		sprite.texture = SpeedPlant
 	elif type == Global.crop_types.DAMAGE:
-		pass
+		sprite.texture = StrengthPlant
 	elif type == Global.crop_types.HEALTH:
-		pass
+		sprite.texture = HealthPlant
 	elif type == Global.crop_types.TELEPORT:
 		sprite.texture = TeleportPlant
 

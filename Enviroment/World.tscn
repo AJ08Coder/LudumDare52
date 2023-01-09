@@ -375,11 +375,12 @@ anims/NighttoDay = SubResource( 6 )
 anims/RESET = SubResource( 7 )
 
 [node name="DayTime" type="Timer" parent="Cycle"]
+wait_time = 60.0
 one_shot = true
 autostart = true
 
 [node name="NightTime" type="Timer" parent="Cycle"]
-wait_time = 100.0
+wait_time = 15.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -401,7 +402,7 @@ margin_right = 170.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 theme = ExtResource( 7 )
-text = "time: 123"
+text = "time: 60"
 script = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="CanvasLayer/HBoxContainer/Time"]
@@ -412,7 +413,7 @@ margin_right = 325.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 theme = ExtResource( 7 )
-text = "wave: 1"
+text = "Day 1 "
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer"]
 margin_left = 329.0

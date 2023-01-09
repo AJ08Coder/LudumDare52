@@ -45,6 +45,7 @@ func give_buff(type: int):
 			buff_animation_player.play("Strength")
 		Global.crop_types.HEALTH:
 			health += 10
+			emit_signal("health_changed", health)
 
 		Global.crop_types.TELEPORT:
 			self.global_position = Global.get_tele_pos()

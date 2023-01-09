@@ -341,7 +341,6 @@ wait_time = 2.0
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" groups=["Player"] instance=ExtResource( 1 )]
-modulate = Color( 1, 1, 1, 1 )
 position = Vector2( 239, 146 )
 __meta__ = {
 "_edit_lock_": true

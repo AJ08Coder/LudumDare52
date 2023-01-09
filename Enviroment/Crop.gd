@@ -31,7 +31,7 @@ func _on_Attract_body_entered(body): # in reange
 	if body.is_in_group("Enemy"): # Is enemy
 		enemies_in_range.append(body) # add to range
 		body.crop_target = self # follow crop
-		body.state = body.FOLLOWCROP 
+		body.state = body.FOLLOWCROP
 
 func _on_DamageSpot_body_entered(body): # in range to damage
 	if body.is_in_group("Enemy"):# is enemy

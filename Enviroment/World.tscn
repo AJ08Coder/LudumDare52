@@ -351,7 +351,7 @@ wait_time = 2.0
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" groups=["Player"] instance=ExtResource( 1 )]
-position = Vector2( 197, 204 )
+position = Vector2( 239, 146 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -422,6 +422,12 @@ custom_styles/fg = SubResource( 8 )
 custom_styles/bg = SubResource( 9 )
 value = 100.0
 percent_visible = false
+
+[node name="TeleportReference" type="ReferenceRect" parent="."]
+margin_left = 21.0
+margin_top = 50.0
+margin_right = 477.0
+margin_bottom = 264.0
 
 [connection signal="timeout" from="GameLoop/SpawnEnemies" to="." method="_on_SpawnEnemies_timeout"]
 [connection signal="turned_day_time" from="Cycle" to="." method="_on_Cycle_turned_day_time"]

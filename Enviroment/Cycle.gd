@@ -25,7 +25,7 @@ func _process(delta):
 	if time == 1:
 		timelabel.text = "Time: " + str(round(day_time.time_left))
 	else:
-		timelabel.text = "Time: " + str(round(night_time.time_left))		
+		timelabel.text = "Time: " + str(round(night_time.time_left))
 
 
 
@@ -33,7 +33,7 @@ func _on_DayTime_timeout() -> void:
 	if time == 1:
 		$AnimationPlayer.play("DaytoNight")
 		print("day to night")
-		
+
 	elif time == 0:
 		$AnimationPlayer.play("NighttoDay")
 		print("night to day")

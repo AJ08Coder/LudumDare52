@@ -39,6 +39,15 @@ func give_buff(type: int):
 		Global.crop_types.SPEED:
 			speed *= 2
 
+		Global.crop_types.DAMAGE:
+			hit_box.damage *= 2
+
+		Global.crop_types.HEALTH:
+			health += 10
+
+		Global.crop_types.TELEPORT:
+			self.global_position = Global.get_tele_pos()
+
 
 
 
@@ -77,7 +86,6 @@ func _physics_process(delta):
 		face(1)
 	elif get_global_mouse_position().x < global_position.x:
 		face(-1)
-
 
 
 	if Input.is_action_pressed("plant") and plant_cooldown.is_stopped():

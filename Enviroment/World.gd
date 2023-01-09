@@ -16,6 +16,7 @@ onready var crops = $YSort/Crops
 
 func _ready() -> void:
 	Global.world_node = self
+	Global.tele_ref = $TeleportReference
 	player.connect("health_changed", self, "player_health_changed")
 
 

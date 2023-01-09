@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var SPEED: int = 30
 export var radius: int = 40
-export var health: int = 30
+export var health: int = 100 
 
 var has_buff = false
 onready var anim = $AnimationPlayer
@@ -10,6 +10,8 @@ onready var sprite = $Sprite
 onready var attack_timer = $StartAttractTimer
 onready var stunned_timer = $StunnedTimer
 onready var buff_timer: Timer = $BuffTimer
+onready var health_bar: ProgressBar = $HealthBar
+onready var health_bar_timer: Timer = $HealthBarTimer
 
 export(String) var moving_anim
 export(String) var idle_anim
@@ -97,6 +99,8 @@ func _physics_process(delta):
 				queue_free()
 
 			# GET HIT
+			health_bar.visible = true
+			health_bar_timer.start()
 			play_anim(hurt_anim)
 			health -= damage_taken
 			state = STUNNED
@@ -112,7 +116,8 @@ func _physics_process(delta):
 		SWITCHTOSURR:
 			state = SURROUND
 
-
+func _process(delta: float) -> void:
+	health_bar.value = health
 
 func move(target, delta): # moves enemy to target
 	var direction = (target - global_position).normalized()
@@ -183,3 +188,7 @@ func _on_StunnedTimer_timeout():
 
 func _on_BuffTimer_timeout() -> void:
 	cleanse_buffs()
+
+
+func _on_HealthBarTimer_timeout() -> void:
+	health_bar.visible = false

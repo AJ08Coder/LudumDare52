@@ -33,12 +33,12 @@ var randomno
 var velocity = Vector2.ZERO
 var crop_target
 var crop_path
- 
+
 export var main_target = "player"
 
 func play_anim(animation):
 	anim.play(animation)
-	
+
 
 
 
@@ -75,9 +75,9 @@ func _ready():
 	modulate = modulate_color
 	buff_animation_player.play("RESET")
 
-		
-	
-	
+
+
+
 func _physics_process(delta):
 	match state:
 		SURROUND: # surrounds player
@@ -111,7 +111,7 @@ func _physics_process(delta):
 			health_bar.visible = true
 			health_bar_timer.start()
 			play_anim(hurt_anim)
-			
+
 			state = STUNNED
 		FOLLOWCROP:
 			if has_buff == false:

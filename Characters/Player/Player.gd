@@ -118,11 +118,12 @@ func plant_seed():
 func _input(event):
 	if event.is_action_pressed("attack"):
 		weapon_anim.play("Slash")
+#		$Hand/MeeleWeapon/Slash.play()
 
 
 func _ready():
 	weapon_anim.play("Idle")
-	buff_animation_player.play("RESET")	
+	buff_animation_player.play("RESET")
 #Enemy AI
 
 func _on_Attract_body_entered(body):

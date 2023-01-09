@@ -42,8 +42,8 @@ margin_top = 70.0
 margin_right = 255.0
 margin_bottom = 131.0
 custom_fonts/font = SubResource( 1 )
-text = "How to play:
-WASD - movement
+text = "How To Play:
+WASD - Movement
 LMB - Attack
 E - Plant Magic Crops"
 

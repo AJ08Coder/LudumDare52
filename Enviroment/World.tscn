@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enviroment/World.gd" type="Script" id=2]
@@ -300,17 +300,6 @@ tracks/1/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0.815686, 0.929412, 0.356863, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.152941, 0.152941, 0.152941, 1 )
-
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
-
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 player_path = NodePath("YSort/Player")
@@ -431,8 +420,7 @@ margin_right = 480.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 9 )
+theme = ExtResource( 7 )
 value = 100.0
 percent_visible = false
 

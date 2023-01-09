@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var SPEED: int = 30
 export var radius: int = 40
-export var health: int = 100 
+export var health: int = 100
 
 var has_buff = false
 onready var anim = $AnimationPlayer

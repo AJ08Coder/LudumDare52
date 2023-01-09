@@ -4,7 +4,7 @@ var souls = 0
 
 var crop_spots = []
 
-var zombie = preload("res://Characters/Enemy/Enemy.tscn")
+var zombie = preload("res://Characters/Enemy/Zombie.tscn")
 onready var spawn_enemies = $GameLoop/SpawnEnemies
 var wave = [3,10,20,0]
 			# amount of enemies, last is win

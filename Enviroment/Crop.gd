@@ -50,4 +50,6 @@ func _on_Life_timeout(): # end of life
 	if current_attacker in enemies_in_range:
 		current_attacker.give_buff(type)
 		current_attacker.state = current_attacker.SWITCHTOSURR
+		for i in enemies_in_range:
+			i.state = i.SWITCHTOSURR
 		queue_free()

@@ -7,6 +7,10 @@ var tile_size = 16
 var speed = 80
 var health = 100
 
+var default_speed = 80
+var default_health = 100
+var default_damage = 10
+
 onready var hand = $Hand
 onready var meele_weapon = $Hand/MeeleWeapon
 onready var sprite = $Sprite
@@ -35,13 +39,13 @@ func give_buff(type: int):
 		Global.crop_types.SPEED:
 			speed *= 2
 
-		Global.crop_types.DAMAGE:
-			hit_box.damage *= 2
+
 
 
 func cleanse_buffs():
-	speed = 80
-	hit_box.damage = 10
+	speed = default_speed
+	hit_box.damage = default_damage
+
 
 
 func choose_rand_item(list): # chooses random item off list
@@ -138,3 +142,7 @@ func _on_Attack_body_exited(body):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Slash":
 		weapon_anim.play("Idle")
+
+
+func _on_BuffTimer_timeout() -> void:
+	cleanse_buffs()

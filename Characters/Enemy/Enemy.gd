@@ -1,14 +1,21 @@
 extends KinematicBody2D
 
-export var SPEED = 30
-export var radius = 40
-export var health = 3
+export var SPEED: int = 30
+export var radius: int = 40
+export var health: int = 30
 
+var has_buff = false
 onready var anim = $AnimationPlayer
 onready var sprite = $Sprite
 onready var attack_timer = $StartAttractTimer
 onready var stunned_timer = $StunnedTimer
 onready var buff_timer: Timer = $BuffTimer
+
+export(String) var moving_anim
+export(String) var idle_anim
+export(String) var slash_anim
+export(String) var hurt_anim
+export(Color) var modulate_color
 
 var crops 
 
@@ -23,7 +30,8 @@ var velocity = Vector2.ZERO
 var crop_target
 var crop_path
 
-
+func play_anim(animation):
+	anim.play(animation)
 
 enum {
 	SURROUND,
@@ -40,21 +48,13 @@ var state = SURROUND
 
 func cleanse_buffs():
 	SPEED = 30
+	modulate = modulate_color
 
 
 
-func give_buff(type: int):
 
-	if not buff_timer.is_stopped():
-		cleanse_buffs()
-	buff_timer.start()
 
-	match type:
-		Global.crop_types.SPEED:
-			SPEED *= 2
 
-		Global.crop_types.DAMAGE:
-			hit_box.damage *= 2
 
 func randomize_circle_pos(): # randomizes random pos around the player
 	rng.randomize()
@@ -62,7 +62,7 @@ func randomize_circle_pos(): # randomizes random pos around the player
 
 func _ready():
 	randomize_circle_pos()
-	anim.play("idle")
+	play_anim(idle_anim)
 
 
 func _physics_process(delta):
@@ -70,20 +70,20 @@ func _physics_process(delta):
 		SURROUND: # surrounds player
 			if state != FOLLOWCROP:
 				move(get_circle_position(randomno), delta)
-				anim.play("Moving")
+				play_anim(moving_anim)
 			else:
 				state = FOLLOWCROP
 		FOLLOW: # follows the player
 			if state != FOLLOWCROP:
 				move(player.global_position, delta)
-				anim.play("Moving")
+				play_anim(moving_anim)
 			else:
 				state = FOLLOWCROP
 		ATTACK:# attacks player with weapon
-			var hit_anims = ["Slash"]
+			var hit_anims = [slash_anim]
 			var rand_anim  = choose(hit_anims)
 			move(player.global_position, delta)
-			anim.play(rand_anim)
+			play_anim(rand_anim)
 		STUNNED: # freezes when hit
 			velocity = Vector2.ZERO # Stops movement
 			if stunned_timer.time_left == stunned_timer.wait_time: # Freezes for wait_time
@@ -100,7 +100,7 @@ func _physics_process(delta):
 		FOLLOWCROP:
 			if is_instance_valid(crop_target) == true:
 				move(crop_target.global_position, delta)
-				anim.play("Moving")
+				play_anim(moving_anim)
 			else:
 				state = SWITCHTOSURR
 		DAMAGECROP:
@@ -175,3 +175,7 @@ func _on_StartAttractTimer_timeout(): # attacks player after surrounding player 
 
 func _on_StunnedTimer_timeout():
 	state = SURROUND
+
+
+func _on_BuffTimer_timeout() -> void:
+	cleanse_buffs()

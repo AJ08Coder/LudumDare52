@@ -5,7 +5,7 @@ var souls = 0
 var crop_spots = []
 
 var day = 0
-
+var viewday = 1
 var skeleton = preload("res://Characters/Enemy/Skeleton.tscn")
 var zombie = preload("res://Characters/Enemy/Zombie.tscn")
 onready var spawn_enemies = $GameLoop/SpawnEnemies
@@ -29,7 +29,7 @@ func _ready() -> void:
 	player.connect("game_over", $CanvasLayer/LoseScreen, "game_over")
 
 func _process(delta: float) -> void:
-	wavetext.text = "Day: " + str(day+1)
+	wavetext.text = "Day: " + str(viewday)
 
 func _on_SpawnEnemies_timeout():
 	if not enemiesspawned >= wave[day]:
@@ -37,9 +37,9 @@ func _on_SpawnEnemies_timeout():
 		rng.randomize()
 		$GameLoop/Path2D/PathFollow2D.unit_offset = rng.randf_range(0,1)
 		if enemiesspawned >= wave[day]/2:
-			instance = zombie.instance()
-		else:
 			instance = skeleton.instance()
+		else:
+			instance = zombie.instance()
 		instance.player = player
 		instance.crops = crops
 		instance.crop_path = crops.get_path()
@@ -61,5 +61,6 @@ func _on_Cycle_turned_day_time():
 	spawn_enemies.stop()
 	enemiesspawned = 0
 	day += 1
+	viewday +=1
 	if day >= wave.size():
 		day = wave.size() -1

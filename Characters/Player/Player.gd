@@ -124,6 +124,8 @@ func plant_seed():
 		return
 	else:
 		Global.world_node.crop_spots.append(spot)
+		$PlantSound.play()
+
 	var crop_inst = crop.instance()
 	# crop params go here later
 	crop_inst.global_position = spot
